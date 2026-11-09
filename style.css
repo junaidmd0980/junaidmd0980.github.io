@@ -1,0 +1,230 @@
+/* ==========================================================
+   style.css
+   1. Colors and fonts (change the look here)
+   2. Base
+   3. Nav bar
+   4. Layout and text helpers
+   5. About / hero
+   6. Projects
+   7. Skills, key-value lists
+   8. Status bar
+   9. Animations
+   10. Mobile
+   ========================================================== */
+
+
+/* 1. COLORS AND FONTS ------------------------------------- */
+:root {
+  --bg:     #0d1117;
+  --panel:  #11161d;
+  --text:   #c9d1d9;
+  --muted:  #6e7681;
+  --line:   #21262d;
+
+  --green:  #7ee787;   /* main accent */
+  --blue:   #79c0ff;   /* links */
+  --yellow: #e3b341;
+  --pink:   #ff7b72;
+
+  --mono: ui-monospace, "JetBrains Mono", "Fira Code", SFMono-Regular, Menlo, Consolas, monospace;
+  --width: 46rem;      /* page width */
+}
+
+/* Light version, used only if the visitor's system is set to light */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #fafafa;  --panel: #f0f0ee;  --text: #24292f;  --muted: #7a828c;  --line: #dcdcd8;
+    --green: #1a7f37;  --blue: #0969da;  --yellow: #9a6700;  --pink: #cf222e;
+  }
+}
+
+
+/* 2. BASE -------------------------------------------------- */
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4.5rem;   /* keeps headings clear of the nav bar */
+}
+
+body {
+  margin: 0;
+  padding-bottom: 3rem;         /* room for the status bar */
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.75 var(--mono);
+}
+
+::selection { background: var(--green); color: var(--bg); }
+
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+
+/* 3. NAV BAR ----------------------------------------------- */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: color-mix(in srgb, var(--panel) 92%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+
+nav .in {
+  max-width: var(--width);
+  margin: 0 auto;
+  padding: .7rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+nav .title { color: var(--muted); font-size: .85rem; }
+
+nav ul {
+  list-style: none;
+  margin: 0 0 0 auto;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: .85rem;
+}
+
+nav ul a { color: var(--muted); transition: color .15s; }
+nav ul a::before { content: "./"; opacity: .5; }
+nav ul a:hover,
+nav ul a.on { color: var(--green); text-decoration: none; }   /* .on = current section */
+
+/* the three window dots, they get colored on hover */
+.dots { display: flex; gap: 6px; }
+.dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--line); transition: background .2s; }
+nav:hover .dots i:nth-child(1) { background: #ff5f56; }
+nav:hover .dots i:nth-child(2) { background: #ffbd2e; }
+nav:hover .dots i:nth-child(3) { background: #27c93f; }
+
+
+/* 4. LAYOUT AND TEXT HELPERS ------------------------------- */
+main { max-width: var(--width); margin: 0 auto; padding: 0 1.25rem; }
+section { padding-top: 3.5rem; }
+
+.cmd   { margin: 0 0 .9rem; }   /* the "$ command" line above each section */
+.ps    { color: var(--green); } /* prompt */
+.path  { color: var(--blue); }
+.muted { color: var(--muted); }
+.exit  { margin-top: 2rem; }
+
+
+/* 5. ABOUT / HERO ------------------------------------------ */
+.hero { padding-top: 3rem; }
+.hero h1 { font-size: 1.7rem; margin: .3rem 0 .6rem; font-weight: 600; letter-spacing: -.01em; }
+.first-cmd { margin-top: 1.4rem; }
+
+.ok { color: var(--green); }
+
+.boot span {
+  display: block;
+  opacity: 0;
+  animation: fadein .4s forwards;
+}
+.boot span:nth-child(1) { animation-delay: .1s; }
+.boot span:nth-child(2) { animation-delay: .35s; }
+.boot span:nth-child(3) { animation-delay: .6s; }
+.boot span:nth-child(4) { animation-delay: .85s; }
+
+.cursor {
+  display: inline-block;
+  width: .6ch;
+  height: 1.1em;
+  margin-left: 2px;
+  background: var(--green);
+  vertical-align: text-bottom;
+  animation: blink 1.1s steps(1) infinite;
+}
+
+
+/* 6. PROJECTS ---------------------------------------------- */
+.proj {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  gap: 0 1rem;
+  padding: .6rem .75rem;
+  margin: 0 -.75rem;
+  border-left: 2px solid transparent;
+  border-radius: 6px;
+  transition: background .15s, border-color .15s, transform .15s;
+}
+.proj:hover { background: var(--panel); border-left-color: var(--green); transform: translateX(3px); }
+
+.proj .perm { color: var(--muted); font-size: .82rem; }
+.proj .lang { color: var(--yellow); font-size: .82rem; }
+.proj .name { grid-column: 1 / -1; font-weight: 600; }
+.proj .desc { grid-column: 1 / -1; color: var(--muted); font-size: .9rem; }
+
+.proj .name a::after { content: " ↗"; opacity: 0; transition: opacity .15s; }
+.proj:hover .name a::after { opacity: 1; }
+
+
+/* 7. SKILLS, KEY-VALUE LISTS ------------------------------- */
+.chips { display: flex; flex-wrap: wrap; gap: .45rem; }
+.chips span {
+  padding: .05rem .55rem;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  font-size: .85rem;
+  transition: border-color .15s, color .15s, transform .15s;
+}
+.chips span:hover { border-color: var(--green); color: var(--green); transform: translateY(-2px); }
+
+.kv { display: grid; grid-template-columns: 7rem 1fr; gap: .1rem 1rem; margin: 0; }
+.kv dt { color: var(--yellow); }
+.kv dd { margin: 0; }
+
+
+/* 8. STATUS BAR -------------------------------------------- */
+.status {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 10;
+  background: var(--panel);
+  border-top: 1px solid var(--line);
+  font-size: .78rem;
+  color: var(--muted);
+}
+.status .in {
+  max-width: var(--width);
+  margin: 0 auto;
+  padding: .35rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.status b { color: var(--green); font-weight: 600; }
+
+
+/* 9. ANIMATIONS -------------------------------------------- */
+@keyframes blink  { 50% { opacity: 0; } }
+@keyframes fadein { to  { opacity: 1; } }
+
+/* sections start hidden, script.js adds .show when they scroll into view */
+.reveal { opacity: 0; transform: translateY(10px); transition: opacity .5s ease, transform .5s ease; }
+.reveal.show { opacity: 1; transform: none; }
+
+/* respect "reduce motion" system setting */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  .reveal, .boot span { opacity: 1; transform: none; }
+}
+
+
+/* 10. MOBILE ----------------------------------------------- */
+@media (max-width: 560px) {
+  nav .title { display: none; }
+  nav ul { margin-left: 0; }
+  .proj { grid-template-columns: 1fr; }
+  .proj .perm { display: none; }
+  .kv { grid-template-columns: 1fr; }
+  .kv dd { margin-bottom: .5rem; }
+}

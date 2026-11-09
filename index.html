@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>junaid@portfolio: ~</title>
+  <meta name="description" content="CS student building production-style web and backend projects.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top bar. To add a page section, add a <li> here and a <section id="..."> below. -->
+  <nav>
+    <div class="in">
+      <div class="dots"><i></i><i></i><i></i></div>
+      <span class="title">junaid@portfolio: ~</span>
+      <ul>
+        <li><a href="#about">about</a></li>
+        <li><a href="#projects">projects</a></li>
+        <li><a href="#skills">skills</a></li>
+        <li><a href="#education">education</a></li>
+        <li><a href="#contact">contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ABOUT -->
+    <section id="about" class="hero">
+      <div class="boot muted">
+        <span>[ <b class="ok">ok</b> ] loading skills</span>
+        <span>[ <b class="ok">ok</b> ] mounting projects</span>
+        <span>[ <b class="ok">ok</b> ] starting curiosity.service</span>
+        <span>[ <b class="ok">ok</b> ] ready</span>
+      </div>
+      <p class="cmd first-cmd">
+        <span class="ps">junaid@portfolio</span>:<span class="path">~</span>$ <span id="typed"></span><span class="cursor"></span>
+      </p>
+      <div class="out">
+        <h1>Mohammad Junaid</h1>
+        <p>
+          CS student from India. I’m always learning something new, mostly web
+          technologies and backend architecture, and I build my projects the way
+          production software is built: clean structure, tests, and code that’s
+          easy to change later.
+        </p>
+      </div>
+    </section>
+
+    <!-- PROJECTS (filled in by script.js, edit the list there) -->
+    <section id="projects" class="reveal">
+      <p class="cmd"><span class="ps">$</span> ls -l <span class="path">~/projects</span></p>
+      <div id="project-list"></div>
+      <noscript><p class="muted">Enable JavaScript to see the project list, or visit my <a href="https://github.com/junaidmd0980">GitHub</a>.</p></noscript>
+    </section>
+
+    <!-- SKILLS (filled in by script.js, edit the list there) -->
+    <section id="skills" class="reveal">
+      <p class="cmd"><span class="ps">$</span> cat <span class="path">skills.txt</span></p>
+      <div id="skill-list" class="chips"></div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" class="reveal">
+      <p class="cmd"><span class="ps">$</span> cat <span class="path">education.log</span></p>
+      <dl class="kv">
+        <dt>college</dt><dd><a href="https://www.sviet.edu.in/">Sri Vasavi Institute of Engineering &amp; Technology</a></dd>
+        <dt>degree</dt><dd>B.Tech, Computer Science and Engineering</dd>
+        <dt>years</dt><dd>2025 to 2029</dd>
+      </dl>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="reveal">
+      <p class="cmd"><span class="ps">$</span> ping <span class="path">junaid</span></p>
+      <dl class="kv">
+        <dt>email</dt><dd><a href="mailto:junaidmd0980@gmail.com">junaidmd0980@gmail.com</a></dd>
+        <dt>github</dt><dd><a href="https://github.com/junaidmd0980">github.com/junaidmd0980</a></dd>
+        <dt>linkedin</dt><dd><a href="https://www.linkedin.com/in/junaidmd0980">in/junaidmd0980</a></dd>
+        <dt>x</dt><dd><a href="https://x.com/junaidmd0980">@junaidmd0980</a></dd>
+        <dt>resume</dt><dd><a href="Resume.pdf">Resume.pdf</a></dd>
+      </dl>
+      <p class="muted exit"><span class="ps">$</span> exit<span class="cursor"></span></p>
+    </section>
+
+  </main>
+
+  <!-- Bottom status bar (section name and clock are updated by script.js) -->
+  <div class="status">
+    <div class="in">
+      <span><b id="sec">about</b> · main</span>
+      <span id="clock"></span>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
